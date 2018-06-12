@@ -11,11 +11,11 @@ import Foundation
 struct PlayingCard: Hashable {
     let color: Color
     let shape: Shape
-    let number: Number
+    let value: Value
     let filling: Filling
     
     static func ==(lhs: PlayingCard, rhs: PlayingCard) -> Bool {
-        return lhs.color == rhs.color && lhs.shape == rhs.shape && lhs.number == rhs.number
+        return lhs.color == rhs.color && lhs.shape == rhs.shape && lhs.value == rhs.value
             && lhs.filling == rhs.filling
     }
 }

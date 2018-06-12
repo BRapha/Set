@@ -17,7 +17,6 @@
 		AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */; };
 		AE7D2FB220CEDFB10020933D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB120CEDFB10020933D /* CardView.swift */; };
 		AE7D2FB920CEE99D0020933D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */; };
-		AE877B3E20CF129A0066CB84 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE877B3D20CF129A0066CB84 /* CardView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
 		AE7D2FB120CEDFB10020933D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		AE877B3D20CF129A0066CB84 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +110,6 @@
 		AE7D2FB320CEDFB50020933D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AE877B3D20CF129A0066CB84 /* CardView.xib */,
 				AE7D2FB120CEDFB10020933D /* CardView.swift */,
 			);
 			path = Views;
@@ -218,7 +215,6 @@
 			files = (
 				AE7D2F9820CA8BC50020933D /* LaunchScreen.storyboard in Resources */,
 				AE7D2F9520CA8BC50020933D /* Assets.xcassets in Resources */,
-				AE877B3E20CF129A0066CB84 /* CardView.xib in Resources */,
 				AE7D2F9320CA8BC30020933D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

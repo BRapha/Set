@@ -9,10 +9,23 @@
 import UIKit
 
 class CardView: UIView {
-
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var imageView: UIImageView!
+    
+    // MARK: - Private Properties
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3)
+            ])
+        
+        stackView.axis = .vertical
+        stackView.spacing = self.frame.height / 10
+        return stackView
+    }()
     
     // MARK: - Init
     
@@ -26,29 +39,20 @@ class CardView: UIView {
     }
     
     private func commonInit(card: PlayingCard) {
-        Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView.backgroundColor = .white
-        
+        self.backgroundColor = .white
         addShapes(card: card)
     }
     
     private func addShapes(card: PlayingCard) {
         let image = UIImage(named: "\(card.shape)_\(card.filling)")?.withRenderingMode(.alwaysTemplate)
-        imageView.image = image
-        imageView.tintColor = card.color.rawValue
         
-        for _ in 1 ..< card.number.rawValue {
-            let additionalImageView = UIImageView(image: image)
-            additionalImageView.translatesAutoresizingMaskIntoConstraints = false
-            additionalImageView.heightAnchor.constraint(equalTo: additionalImageView.widthAnchor,
-                                                        multiplier: 1/3).isActive = true
-            additionalImageView.tintColor = card.color.rawValue
-
-            stackView.addArrangedSubview(additionalImageView)
+        for _ in 0 ..< card.value.rawValue {
+            let imageView = UIImageView(image: image)
+            imageView.tintColor = card.color.rawValue
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor,
+                                             multiplier: 3).isActive = true
+            stackView.addArrangedSubview(imageView)
         }
     }
-    
 }

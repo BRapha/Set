@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         
         view.backgroundColor = UIColor.groupTableViewBackground
         
-        let card = PlayingCard(color: .orange, shape: .tilde, number: .three, filling: .speckled)
+        let card = PlayingCard(color: .orange, shape: .tilde, value: .one, filling: .speckled)
         let cardView = CardView(frame: CGRect(x: 50, y: 50, width: 100, height: 150), card: card)
         
         view.addSubview(cardView)

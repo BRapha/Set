@@ -50,7 +50,13 @@ enum Shape: String {
     static let allValues = [oval, rectangle, tilde]
 }
 
-enum Number: Int {
+enum Filling: String {
+    case empty, speckled, full
+    
+    static let allValues = [empty, speckled, full]
+}
+
+enum Value: Int {
     case one = 1
     case two = 2
     case three = 3
@@ -58,20 +64,14 @@ enum Number: Int {
     static let allValues = [one, two, three]
 }
 
-enum Filling: String {
-    case empty, speckled, full
-    
-    static let allValues = [empty, speckled, full]
-}
-
 let fullDeck: Set<PlayingCard> = {
     var set = Set<PlayingCard>()
     
     for color in Color.allValues {
         for shape in Shape.allValues {
-            for number in Number.allValues {
+            for value in Value.allValues {
                 for filling in Filling.allValues {
-                    let card = PlayingCard(color: color, shape: shape, number: number,
+                    let card = PlayingCard(color: color, shape: shape, value: value,
                                            filling: filling)
                     set.insert(card)
                 }
