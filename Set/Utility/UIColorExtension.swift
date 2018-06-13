@@ -19,4 +19,7 @@ extension UIColor {
     static let systemOrange = UIColor(redByte: 255, greenByte: 149, blueByte: 0)
     static let systemGreen = UIColor(redByte: 76, greenByte: 217, blueByte: 100)
     static let systemPurple = UIColor(redByte: 88, greenByte: 86, blueByte: 214)
+    
+    static let customGreen = UIColor(redByte: 0, greenByte: 160, blueByte: 30)
+    static let customOrange = UIColor(redByte: 255, greenByte: 83, blueByte: 0)
 }
