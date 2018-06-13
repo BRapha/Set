@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     }
     
     private func dealInitial() {
-        for _ in 0 ..< 13 {
+        for _ in 0 ..< 12 {
             visibleCards.append(deck.remove(at: deck.getRandomIndex()!))
         }
     }
@@ -57,8 +57,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         guard let card = visibleCards[safe: indexPath.row] else { return cell }
         cell.backgroundColor = .cyan
-        let cardView = CardView(frame: cell.contentView.bounds, card: card)
+        let cardFrame = CGRect(x: 0, y: 0, width: cell.contentView.frame.height/1.5,
+                               height: cell.contentView.frame.height)
+        let cardView = CardView(frame: cardFrame, card: card)
         cell.contentView.addSubview(cardView)
+        cardView.center = cell.contentView.center
         return cell
     }
 
@@ -74,6 +77,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
+    /// Always display 3 items per row
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -84,12 +88,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let numberOfRows = (numberOfCards%3 == 0) ? numberOfCards/3 : numberOfCards/3 + 1
         let maxItemHeight: CGFloat = (collectionView.frame.height
             - CGFloat(numberOfRows + 1) * spacing) / CGFloat(numberOfRows)
+        let itemHeight = min(maxItemWidth*1.5, maxItemHeight)
         
-        let itemWidth = min(maxItemWidth, maxItemHeight/1.5)
-        
-        print("\n --- maxItemWidth = \(maxItemWidth), maxItemHeight = \(maxItemHeight), itemWidth = \(itemWidth)")
-        
-        return CGSize(width: itemWidth, height: itemWidth*1.5)
+        return CGSize(width: maxItemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView,
