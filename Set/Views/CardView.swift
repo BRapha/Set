@@ -29,34 +29,47 @@ class CardView: UIView {
     
     // MARK: - Init
     
-    init(frame: CGRect, card: PlayingCard) {
+    init(frame: CGRect, card: PlayingCard, isSelected: Bool = false) {
         super.init(frame: frame)
-        commonInit(card: card)
+        commonInit(card: card, selected: isSelected)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func commonInit(card: PlayingCard) {
+    // MARK: - Public Methods
+    
+    func setState(selected: Bool) {
+        let whiteFactor: CGFloat = selected ? 1 : 0.97
+        backgroundColor = UIColor(white: whiteFactor, alpha: 1)
+        
+        layer.shadowRadius = selected ? 5 : 1
+        layer.shadowOffset = selected ? CGSize(width: 5, height: 5) : CGSize(width: 1, height: 1)
+        
+        let scaleFactor: CGFloat = selected ? 1.1 : 1/1.1
+        transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func commonInit(card: PlayingCard, selected: Bool) {
         formatView()
         addShadow()
         addShapes(card: card)
+        setState(selected: selected)
     }
     
     private func formatView() {
-        self.backgroundColor = .white
-        self.layer.cornerRadius = 10
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = 10
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func addShadow() {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 1, height: 1)
-        layer.shadowRadius = 1
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
     }
     

@@ -23,9 +23,10 @@ class GampePlayViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.groupTableViewBackground
+        
+        collectionView.backgroundColor = .clear
         collectionView.allowsMultipleSelection = true
         collectionView.isScrollEnabled = false
-        collectionView.backgroundColor = .clear
     }
     
     override func viewDidLayoutSubviews() {
@@ -43,23 +44,25 @@ extension GampePlayViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseIdentifier",
-                                                      for: indexPath)
-        return viewModel.configureCell(cell, forItemAt: indexPath)
+                                                      for: indexPath) as! CardCollectionViewCell
+        let configuredCell = viewModel.configureCell(cell, forItemAt: indexPath)
+        if configuredCell.isSelected {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        }
+        return configuredCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return viewModel.selectedSet.count < 3
+    func collectionView(_ collectionView: UICollectionView,
+                        shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return viewModel.shouldSelectCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectCard(at: indexPath)
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = .red
-        
+        viewModel.didSelectCard(at: indexPath)        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         viewModel.didDeselectCard(at: indexPath)
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
     }
 }
 

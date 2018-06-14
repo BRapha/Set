@@ -30,26 +30,25 @@ class GamePlayViewModel {
     
     //MARK: - Public Methods
     
+    func shouldSelectCell() -> Bool {
+        return selectedSet.count < 3
+    }
+    
     func didSelectCard(at indexPath: IndexPath) {
-
+        
     }
     
     func didDeselectCard(at indexPath: IndexPath) {
         
     }
     
-    func configureCell(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        cell.contentView.subviews.forEach{ $0.removeFromSuperview() }
-        cell.clipsToBounds = false
-        
+    func configureCell(_ cell: CardCollectionViewCell,
+                       forItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let card = visibleCards[safe: indexPath.row] else { return cell }
         
-        let cardFrame = CGRect(x: 0, y: 0, width: cell.contentView.frame.height/1.5,
-                               height: cell.contentView.frame.height)
-        let cardView = CardView(frame: cardFrame, card: card)
-        cell.contentView.addSubview(cardView)
-        cardView.center = cell.contentView.center
-        
+        let isSelected = indexPath.row == 5
+        cell.addCardView(forCard: card, isSelected: isSelected )
+        cell.isSelected = isSelected
         return cell
     }
 }
