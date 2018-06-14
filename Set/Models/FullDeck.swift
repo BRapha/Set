@@ -1,5 +1,5 @@
 //
-//  Deck.swift
+//  FullDeck.swift
 //  Set
 //
 //  Created by Raphael Blistein on 08.06.18.

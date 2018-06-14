@@ -8,20 +8,26 @@
 
 import UIKit
 
+protocol GamePlayViewModelDelegate: class {
+    func reloadView()
+}
+
 class GamePlayViewModel {
     
     //MARK: - Public Properties
     
     var visibleCards = [PlayingCard]()
-    var selectedSet = Set<PlayingCard>()
     
     //MARK: - Private Properties
     
+    private weak var delegate: GamePlayViewModelDelegate?
+    
     private var deck = fullDeck
+    private var selectedIndexes = Set<IndexPath>()
     
     //MARK: - Init
     
-    init() {
+    init(delegate: GamePlayViewModelDelegate) {
         // Deal initial hand
         for _ in 0 ..< 12 {
             visibleCards.append(deck.remove(at: deck.getRandomIndex()!))
@@ -31,24 +37,39 @@ class GamePlayViewModel {
     //MARK: - Public Methods
     
     func shouldSelectCell() -> Bool {
-        return selectedSet.count < 3
+        return selectedIndexes.count < 3
     }
     
     func didSelectCard(at indexPath: IndexPath) {
+        selectedIndexes.insert(indexPath)
         
+        if selectedIndexes.count == 3 {
+            testCurrentSelection()
+        }
     }
     
     func didDeselectCard(at indexPath: IndexPath) {
-        
+        selectedIndexes.remove(indexPath)
     }
     
     func configureCell(_ cell: CardCollectionViewCell,
                        forItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let card = visibleCards[safe: indexPath.row] else { return cell }
         
-        let isSelected = indexPath.row == 5
+        let isSelected = selectedIndexes.contains(indexPath)
         cell.addCardView(forCard: card, isSelected: isSelected )
         cell.isSelected = isSelected
         return cell
+    }
+    
+    //MARK: - Private Methods
+    
+    private func testCurrentSelection() {
+        var selectedSet = Set<PlayingCard>()
+        for indexPath in selectedIndexes {
+            selectedSet.insert(visibleCards[indexPath.row])
+        }
+        
+        //TODO: test set
     }
 }

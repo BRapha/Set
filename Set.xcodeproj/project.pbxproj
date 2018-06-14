@@ -12,12 +12,12 @@
 		AE51C5C120D185140038308A /* GamePlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C5C020D185140038308A /* GamePlayViewModel.swift */; };
 		AE78AF7A20D2A6790019B0F7 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78AF7920D2A6790019B0F7 /* CardCollectionViewCell.swift */; };
 		AE7D2F8E20CA8BC30020933D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2F8D20CA8BC30020933D /* AppDelegate.swift */; };
-		AE7D2F9020CA8BC30020933D /* GampePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2F8F20CA8BC30020933D /* GampePlayViewController.swift */; };
+		AE7D2F9020CA8BC30020933D /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2F8F20CA8BC30020933D /* GamePlayViewController.swift */; };
 		AE7D2F9320CA8BC30020933D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7D2F9120CA8BC30020933D /* Main.storyboard */; };
 		AE7D2F9520CA8BC50020933D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE7D2F9420CA8BC50020933D /* Assets.xcassets */; };
 		AE7D2F9820CA8BC50020933D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7D2F9620CA8BC50020933D /* LaunchScreen.storyboard */; };
 		AE7D2FA320CA8BC50020933D /* SetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FA220CA8BC50020933D /* SetTests.swift */; };
-		AE7D2FAE20CAF2700020933D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FAD20CAF2700020933D /* Deck.swift */; };
+		AE7D2FAE20CAF2700020933D /* FullDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FAD20CAF2700020933D /* FullDeck.swift */; };
 		AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */; };
 		AE7D2FB220CEDFB10020933D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB120CEDFB10020933D /* CardView.swift */; };
 		AE7D2FB920CEE99D0020933D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */; };
@@ -40,7 +40,7 @@
 		AE78AF7920D2A6790019B0F7 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE7D2F8A20CA8BC30020933D /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7D2F8D20CA8BC30020933D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE7D2F8F20CA8BC30020933D /* GampePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GampePlayViewController.swift; sourceTree = "<group>"; };
+		AE7D2F8F20CA8BC30020933D /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		AE7D2F9220CA8BC30020933D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE7D2F9420CA8BC50020933D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE7D2F9720CA8BC50020933D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		AE7D2F9E20CA8BC50020933D /* SetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7D2FA220CA8BC50020933D /* SetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTests.swift; sourceTree = "<group>"; };
 		AE7D2FA420CA8BC50020933D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE7D2FAD20CAF2700020933D /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		AE7D2FAD20CAF2700020933D /* FullDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDeck.swift; sourceTree = "<group>"; };
 		AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
 		AE7D2FB120CEDFB10020933D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			children = (
 				AE7D2F8D20CA8BC30020933D /* AppDelegate.swift */,
 				AE7D2F9120CA8BC30020933D /* Main.storyboard */,
-				AE7D2F8F20CA8BC30020933D /* GampePlayViewController.swift */,
+				AE7D2F8F20CA8BC30020933D /* GamePlayViewController.swift */,
 				AE51C5C020D185140038308A /* GamePlayViewModel.swift */,
 				AE78AF7920D2A6790019B0F7 /* CardCollectionViewCell.swift */,
 				AE7D2FB420CEDFBA0020933D /* Models */,
@@ -128,7 +128,7 @@
 		AE7D2FB420CEDFBA0020933D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE7D2FAD20CAF2700020933D /* Deck.swift */,
+				AE7D2FAD20CAF2700020933D /* FullDeck.swift */,
 				AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */,
 			);
 			path = Models;
@@ -245,10 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE7D2FAE20CAF2700020933D /* Deck.swift in Sources */,
+				AE7D2FAE20CAF2700020933D /* FullDeck.swift in Sources */,
 				AE51C5BD20D1681F0038308A /* CollectionExtension.swift in Sources */,
 				AE7D2FB920CEE99D0020933D /* UIColorExtension.swift in Sources */,
-				AE7D2F9020CA8BC30020933D /* GampePlayViewController.swift in Sources */,
+				AE7D2F9020CA8BC30020933D /* GamePlayViewController.swift in Sources */,
 				AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */,
 				AE51C5C120D185140038308A /* GamePlayViewModel.swift in Sources */,
 				AE7D2F8E20CA8BC30020933D /* AppDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GampePlayViewController: UIViewController {
+class GamePlayViewController: UIViewController {
 
     //MARK: - IBOutlets
     
@@ -16,7 +16,7 @@ class GampePlayViewController: UIViewController {
 
     //MARK: - Private Properties
     
-    private lazy var viewModel = GamePlayViewModel()
+    private lazy var viewModel = GamePlayViewModel(delegate: self)
     private var spacing: CGFloat = 16
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class GampePlayViewController: UIViewController {
     }
 }
 
-extension GampePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return viewModel.visibleCards.count
@@ -66,7 +66,7 @@ extension GampePlayViewController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-extension GampePlayViewController: UICollectionViewDelegateFlowLayout {
+extension GamePlayViewController: UICollectionViewDelegateFlowLayout {
     
     /// Always display 3 items per row
     func collectionView(_ collectionView: UICollectionView,
@@ -94,5 +94,11 @@ extension GampePlayViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return spacing
+    }
+}
+
+extension GamePlayViewController: GamePlayViewModelDelegate {
+    func reloadView() {
+        collectionView.reloadData()
     }
 }
