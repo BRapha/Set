@@ -39,12 +39,30 @@ class CardView: UIView {
     }
     
     private func commonInit(card: PlayingCard) {
-        self.backgroundColor = .white
+        formatView()
+        addShadow()
         addShapes(card: card)
     }
     
+    private func formatView() {
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    private func addShadow() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 1
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
+    }
+    
     private func addShapes(card: PlayingCard) {
-        let image = UIImage(named: "\(card.shape)_\(card.filling)")?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: "\(card.shape)_\(card.filling)")?
+            .withRenderingMode(.alwaysTemplate)
         
         for _ in 0 ..< card.value.rawValue {
             let imageView = UIImageView(image: image)
