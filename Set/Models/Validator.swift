@@ -11,35 +11,38 @@ import Foundation
 struct Validator {
     
     static func checkSet(_ set: Set<PlayingCard>) -> Bool {
-        guard set.count == 3 else { return false }
-        return checkColor(set) && checkShape(set) && checkValue(set) && checkFilling(set)
+        let colors = set.map { $0.color }
+        let colorValidity = testIfAllDifferent(colors) || testIfAllEqual(colors)
+        
+        let values = set.map { $0.value }
+        let valueValidity = testIfAllDifferent(values) || testIfAllEqual(values)
+        
+        let shapes = set.map { $0.shape }
+        let shapeValidity = testIfAllDifferent(shapes) || testIfAllEqual(shapes)
+        
+        let fillings = set.map { $0.filling }
+        let fillingValidity = testIfAllDifferent(fillings) || testIfAllEqual(fillings)
+        
+        return colorValidity && valueValidity && shapeValidity && fillingValidity
     }
     
-    private static func checkColor(_ set: Set<PlayingCard>) -> Bool {
-        let feat = set.map { $0.color }
-        let allDifferent = feat[0] != feat[1] && feat[1] != feat[2] && feat[2] != feat[0]
-        let allSame = feat[0] == feat[1] && feat[1] == feat[2]
-        return allDifferent || allSame
+    private static func testIfAllDifferent<T: Hashable>(_ features: Array<T>) -> Bool {
+        var allDifferent = true
+        for elemet in features.enumerated() {
+            for i in elemet.offset+1 ..< features.endIndex {
+                allDifferent = allDifferent && (elemet.element != features[i])
+            }
+        }
+        return allDifferent
     }
     
-    private static func checkShape(_ set: Set<PlayingCard>) -> Bool {
-        let feat = set.map { $0.shape }
-        let allDifferent = feat[0] != feat[1] && feat[1] != feat[2] && feat[2] != feat[0]
-        let allSame = feat[0] == feat[1] && feat[1] == feat[2]
-        return allDifferent || allSame
-    }
-    
-    private static func checkValue(_ set: Set<PlayingCard>) -> Bool {
-        let feat = set.map { $0.value }
-        let allDifferent = feat[0] != feat[1] && feat[1] != feat[2] && feat[2] != feat[0]
-        let allSame = feat[0] == feat[1] && feat[1] == feat[2]
-        return allDifferent || allSame
-    }
-    
-    private static func checkFilling(_ set: Set<PlayingCard>) -> Bool {
-        let feat = set.map { $0.filling }
-        let allDifferent = feat[0] != feat[1] && feat[1] != feat[2] && feat[2] != feat[0]
-        let allSame = feat[0] == feat[1] && feat[1] == feat[2]
-        return allDifferent || allSame
+    private static func testIfAllEqual<T: Hashable>(_ features: Array<T>) -> Bool {
+        var allEqual = true
+        guard let first = features.first else { return allEqual }
+        
+        for element in features.dropFirst().enumerated() {
+            allEqual = allEqual && (first == element.element)
+        }
+        return allEqual
     }
 }
