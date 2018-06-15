@@ -21,16 +21,34 @@ class SetTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSetWithAllDifferentFeats() {
+        let testSet = Set([
+            PlayingCard(color: .green, shape: .rectangle, value: .one, filling: .empty),
+            PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled),
+            PlayingCard(color: .purple, shape: .tilde, value: .three, filling: .full)
+            ])
+        let valid = Validator.checkSet(testSet)
+        XCTAssert(valid == true, "Failed validating set with all different features.")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testValidSetWithMixedFeats() {
+        let testSet = Set([
+            PlayingCard(color: .green, shape: .rectangle, value: .one, filling: .speckled),
+            PlayingCard(color: .green, shape: .oval, value: .two, filling: .speckled),
+            PlayingCard(color: .green, shape: .tilde, value: .three, filling: .speckled)
+            ])
+        let valid = Validator.checkSet(testSet)
+        XCTAssert(valid == true, "Failed validating set with all mixed features.")
+    }
+    
+    func testInvalidSet() {
+        let testSet = Set([
+            PlayingCard(color: .green, shape: .oval, value: .one, filling: .empty),
+            PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled),
+            PlayingCard(color: .purple, shape: .oval, value: .three, filling: .speckled)
+            ])
+        let valid = Validator.checkSet(testSet)
+        XCTAssert(valid == false, "Failed validating set with all mixed features.")
     }
     
 }

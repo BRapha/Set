@@ -70,6 +70,8 @@ class GamePlayViewModel {
             selectedSet.insert(visibleCards[indexPath.row])
         }
         
-        //TODO: test set
+        let valid = Validator.checkSet(selectedSet)
+        
+        print("\n --- Test set was \(valid ? "valid" : "not valid")")
     }
 }
