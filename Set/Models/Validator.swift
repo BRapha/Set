@@ -13,17 +13,18 @@ struct Validator {
     static func checkSet(_ set: Set<PlayingCard>) -> Bool {
         let colors = set.map { $0.color }
         let colorValidity = testIfAllDifferent(colors) || testIfAllEqual(colors)
+        guard colorValidity else { return false }
         
         let values = set.map { $0.value }
         let valueValidity = testIfAllDifferent(values) || testIfAllEqual(values)
+        guard valueValidity else { return false }
         
         let shapes = set.map { $0.shape }
         let shapeValidity = testIfAllDifferent(shapes) || testIfAllEqual(shapes)
+        guard shapeValidity else { return false }
         
         let fillings = set.map { $0.filling }
-        let fillingValidity = testIfAllDifferent(fillings) || testIfAllEqual(fillings)
-        
-        return colorValidity && valueValidity && shapeValidity && fillingValidity
+        return testIfAllDifferent(fillings) || testIfAllEqual(fillings)
     }
     
     private static func testIfAllDifferent<T: Hashable>(_ features: Array<T>) -> Bool {
