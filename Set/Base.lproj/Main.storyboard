@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rk2-dz-2R2">
-                                <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="10" width="375" height="588"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W4P-F2-zCh">
                                     <size key="itemSize" width="50" height="50"/>
@@ -41,13 +42,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="WfW-H8-Usw"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdo-PU-3K3">
+                                <rect key="frame" x="129" y="617" width="117" height="30"/>
+                                <state key="normal" title="One More Please"/>
+                                <connections>
+                                    <action selector="dealCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s43-Ia-hbf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rk2-dz-2R2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="2Uc-MX-F4i"/>
+                            <constraint firstItem="Mdo-PU-3K3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7HN-OP-RSi"/>
                             <constraint firstItem="rk2-dz-2R2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Axm-pr-PNP"/>
                             <constraint firstItem="rk2-dz-2R2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HfZ-A0-SAZ"/>
-                            <constraint firstItem="rk2-dz-2R2" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="pz9-4L-jMP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="rk2-dz-2R2" secondAttribute="top" constant="10" id="O2O-tn-TAU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Mdo-PU-3K3" secondAttribute="bottom" constant="20" id="bEk-iK-F2J"/>
+                            <constraint firstItem="Mdo-PU-3K3" firstAttribute="top" secondItem="rk2-dz-2R2" secondAttribute="bottom" constant="19" id="f4H-gC-MvD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -57,6 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

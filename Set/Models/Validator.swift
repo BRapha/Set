@@ -10,7 +10,10 @@ import Foundation
 
 struct Validator {
     
+    /// Checks the validity of a set of cards according to the game's rules.
     static func checkSet(_ set: Set<PlayingCard>) -> Bool {
+        guard set.count == 3 else { return false }
+        
         let colors = set.map { $0.color }
         let colorValidity = testIfAllDifferent(colors) || testIfAllEqual(colors)
         guard colorValidity else { return false }

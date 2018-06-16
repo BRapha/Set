@@ -29,8 +29,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func addCardView(forCard card: PlayingCard, isSelected: Bool) {
-        let cardFrame = CGRect(x: 0, y: 0, width: contentView.frame.height/1.5,
-                               height: contentView.frame.height)
+        let cardFrame = CGRect(x: 0, y: 0, width: self.frame.height/1.5,
+                               height: self.frame.height)
         cardView = CardView(frame: cardFrame, card: card, isSelected: isSelected)
         contentView.addSubview(cardView!)
         cardView!.center = contentView.center

@@ -10,10 +10,10 @@ import Foundation
 
 // TODO: Reduce complexity to O(1) by conforming to Random Access Collection: https://developer.apple.com/documentation/swift/randomaccesscollection
 extension Set {
-    func getRandomIndex() -> Set.Index? {
+    mutating func removeRandomElement() -> Element? {
         guard count > 0 else { return nil }
         let rand = Int(arc4random_uniform(UInt32(count)))
         let randomIndex = self.index(self.startIndex, offsetBy: rand)
-        return randomIndex
+        return self.remove(at: randomIndex)
     }
 }

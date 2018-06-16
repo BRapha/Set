@@ -51,4 +51,13 @@ class SetTests: XCTestCase {
         XCTAssert(valid == false, "Failed validating set with all mixed features.")
     }
     
+    func testSetTooSmall() {
+        let testSet = Set([
+            PlayingCard(color: .green, shape: .oval, value: .one, filling: .empty),
+            PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled)
+            ])
+        let valid = Validator.checkSet(testSet)
+        XCTAssert(valid == false, "Failed validating set with too few cards.")
+    }
+    
 }

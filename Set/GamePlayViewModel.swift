@@ -16,7 +16,7 @@ class GamePlayViewModel {
     
     //MARK: - Public Properties
     
-    var visibleCards = [PlayingCard]()
+    var visibleCards = [PlayingCard?]()
     
     //MARK: - Private Properties
     
@@ -28,16 +28,28 @@ class GamePlayViewModel {
     //MARK: - Init
     
     init(delegate: GamePlayViewModelDelegate) {
+        self.delegate = delegate
         // Deal initial hand
         for _ in 0 ..< 12 {
-            visibleCards.append(deck.remove(at: deck.getRandomIndex()!))
+            visibleCards.append(deck.removeRandomElement())
         }
     }
     
     //MARK: - Public Methods
     
-    func shouldSelectCell() -> Bool {
-        return selectedIndexes.count < 3
+    func configureCell(_ cell: CardCollectionViewCell,
+                       forItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let _card = visibleCards[safe: indexPath.row], let card = _card else { return cell }
+        let isSelected = selectedIndexes.contains(indexPath)
+        cell.addCardView(forCard: card, isSelected: isSelected )
+        cell.isSelected = isSelected
+        
+        return cell
+    }
+    
+    /// Don't select empty cells or any if selected count > 3
+    func shouldSelectCell(at indexPath: IndexPath) -> Bool {
+        return (selectedIndexes.count < 3) && (visibleCards[indexPath.row] != nil)
     }
     
     func didSelectCard(at indexPath: IndexPath) {
@@ -52,14 +64,11 @@ class GamePlayViewModel {
         selectedIndexes.remove(indexPath)
     }
     
-    func configureCell(_ cell: CardCollectionViewCell,
-                       forItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let card = visibleCards[safe: indexPath.row] else { return cell }
-        
-        let isSelected = selectedIndexes.contains(indexPath)
-        cell.addCardView(forCard: card, isSelected: isSelected )
-        cell.isSelected = isSelected
-        return cell
+    func dealCard() {
+        if let card = deck.removeRandomElement() {
+            visibleCards.append(card)
+            delegate?.reloadView()
+        }
     }
     
     //MARK: - Private Methods
@@ -67,11 +76,21 @@ class GamePlayViewModel {
     private func testCurrentSelection() {
         var selectedSet = Set<PlayingCard>()
         for indexPath in selectedIndexes {
-            selectedSet.insert(visibleCards[indexPath.row])
+            if let card = visibleCards[indexPath.row] {
+                selectedSet.insert(card)
+            }
         }
         
-        let valid = Validator.checkSet(selectedSet)
-        
-        print("\n --- Test set was \(valid ? "valid" : "not valid")")
+        if Validator.checkSet(selectedSet) {
+            replaceSelectedCards()
+        }
+        selectedIndexes.removeAll()
+        delegate?.reloadView()
+    }
+    
+    private func replaceSelectedCards() {
+        for indexPath in selectedIndexes {
+            visibleCards[indexPath.row] = deck.removeRandomElement()
+        }
     }
 }

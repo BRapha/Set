@@ -33,6 +33,12 @@ class GamePlayViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView.reloadData()
     }
+    
+    //MAKR: - IBActions
+    
+    @IBAction func dealCard(_ sender: UIButton) {
+        viewModel.dealCard()
+    }
 }
 
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -45,6 +51,7 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseIdentifier",
                                                       for: indexPath) as! CardCollectionViewCell
+        cell.backgroundColor = .cyan
         let configuredCell = viewModel.configureCell(cell, forItemAt: indexPath)
         if configuredCell.isSelected {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
@@ -54,7 +61,7 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView,
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return viewModel.shouldSelectCell()
+        return viewModel.shouldSelectCell(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
