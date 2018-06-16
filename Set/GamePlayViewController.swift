@@ -51,11 +51,12 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseIdentifier",
                                                       for: indexPath) as! CardCollectionViewCell
-        cell.backgroundColor = .cyan
+
         let configuredCell = viewModel.configureCell(cell, forItemAt: indexPath)
         if configuredCell.isSelected {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
         }
+        
         return configuredCell
     }
 

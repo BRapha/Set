@@ -14,7 +14,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        clipsToBounds = false
         contentView.subviews.forEach{ $0.removeFromSuperview() }
         cardView = nil
     }
@@ -22,17 +21,22 @@ class CardCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             guard isSelected != oldValue else { return }
-            UIView.animate(withDuration: 0.1) { [unowned self] in
-                self.cardView?.setState(selected: self.isSelected)
+            UIView.animate(withDuration: 0.15) { [unowned self] in
+                self.cardView?.isSelected = self.isSelected
             }
         }
     }
     
     func addCardView(forCard card: PlayingCard, isSelected: Bool) {
-        let cardFrame = CGRect(x: 0, y: 0, width: self.frame.height/1.5,
-                               height: self.frame.height)
-        cardView = CardView(frame: cardFrame, card: card, isSelected: isSelected)
+        clipsToBounds = false
+        cardView = CardView(card: card, isSelected: isSelected)
         contentView.addSubview(cardView!)
-        cardView!.center = contentView.center
+        cardView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardView!.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            cardView!.widthAnchor.constraint(equalTo: cardView!.heightAnchor, multiplier: 1/1.5),
+            cardView!.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            cardView!.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
     }
 }

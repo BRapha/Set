@@ -10,10 +10,30 @@ import UIKit
 
 class CardView: UIView {
     
+    // MARK: - Public Properties
+    
+    var isSelected = false {
+        didSet {
+            let whiteFactor: CGFloat = isSelected ? 1 : 0.97
+            backgroundColor = UIColor(white: whiteFactor, alpha: 1)
+            
+            layer.shadowRadius = isSelected ? 5 : 1
+            let offset = isSelected ? 5 : 1
+            layer.shadowOffset = CGSize(width: offset, height: offset)
+            
+            if isSelected != oldValue {
+                let scaleFactor: CGFloat = isSelected ? 1.1 : 1/1.1
+                transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+            }
+        }
+    }
+    
     // MARK: - Private Properties
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.axis = .vertical
+        
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -22,42 +42,32 @@ class CardView: UIView {
             stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2/3)
             ])
         
-        stackView.axis = .vertical
-        stackView.spacing = self.frame.height / 10
         return stackView
     }()
     
     // MARK: - Init
     
-    init(frame: CGRect, card: PlayingCard, isSelected: Bool = false) {
-        super.init(frame: frame)
-        commonInit(card: card, selected: isSelected)
+    init(card: PlayingCard, isSelected: Bool = false) {
+        super.init(frame: CGRect.zero)
+        commonInit(card: card, isSelected: isSelected)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    // MARK: - Public Methods
-    
-    func setState(selected: Bool) {
-        let whiteFactor: CGFloat = selected ? 1 : 0.97
-        backgroundColor = UIColor(white: whiteFactor, alpha: 1)
-        
-        layer.shadowRadius = selected ? 5 : 1
-        layer.shadowOffset = selected ? CGSize(width: 5, height: 5) : CGSize(width: 1, height: 1)
-        
-        let scaleFactor: CGFloat = selected ? 1.1 : 1/1.1
-        transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        stackView.spacing = self.frame.height / 10
     }
     
     // MARK: - Private Methods
     
-    private func commonInit(card: PlayingCard, selected: Bool) {
+    private func commonInit(card: PlayingCard, isSelected: Bool) {
         formatView()
         addShadow()
         addShapes(card: card)
-        setState(selected: selected)
+        self.isSelected = isSelected
     }
     
     private func formatView() {
