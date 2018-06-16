@@ -88,9 +88,20 @@ class GamePlayViewModel {
         delegate?.reloadView()
     }
     
+    /// Replaces visible selected cards from valid set while trying to reduce visible cards to 12
     private func replaceSelectedCards() {
-        for indexPath in selectedIndexes {
-            visibleCards[indexPath.row] = deck.removeRandomElement()
+        let indexesToReplace = selectedIndexes.map({ $0.row }).sorted(by: { $0>$1 })
+        
+        for i in indexesToReplace {
+            if i >= 12 {
+                visibleCards.remove(at: i)
+            } else {
+                if visibleCards.count > 12 {
+                    visibleCards[i] = visibleCards.removeLast()
+                } else {
+                    visibleCards[i] = deck.removeRandomElement()
+                }
+            }
         }
     }
 }

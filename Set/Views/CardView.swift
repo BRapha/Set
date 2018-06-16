@@ -18,13 +18,11 @@ class CardView: UIView {
             backgroundColor = UIColor(white: whiteFactor, alpha: 1)
             
             layer.shadowRadius = isSelected ? 5 : 1
-            let offset = isSelected ? 5 : 1
+            let offset: CGFloat = isSelected ? 5 : 1
             layer.shadowOffset = CGSize(width: offset, height: offset)
             
-            if isSelected != oldValue {
-                let scaleFactor: CGFloat = isSelected ? 1.1 : 1/1.1
-                transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-            }
+            let scaleFactor: CGFloat = isSelected ? 1.1 : 1
+            transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
         }
     }
     
@@ -59,13 +57,13 @@ class CardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         stackView.spacing = self.frame.height / 10
+        addShadow()
     }
     
     // MARK: - Private Methods
     
     private func commonInit(card: PlayingCard, isSelected: Bool) {
         formatView()
-        addShadow()
         addShapes(card: card)
         self.isSelected = isSelected
     }
