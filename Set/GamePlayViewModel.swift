@@ -24,6 +24,12 @@ class GamePlayViewModel {
     
     private var deck = fullDeck
     private var selectedIndexes = Set<IndexPath>()
+    private var validSetIndexes = Set<IndexPath>()
+    private var isHelping = false {
+        didSet {
+            if isHelping { screenVisibleCards() }
+        }
+    }
     
     //MARK: - Init
     
@@ -43,6 +49,10 @@ class GamePlayViewModel {
         let isSelected = selectedIndexes.contains(indexPath)
         cell.addCardView(forCard: card, isSelected: isSelected )
         cell.isSelected = isSelected
+        
+        let isPartOfValidSet = isHelping && validSetIndexes.contains(indexPath)
+        cell.contentView.layer.borderWidth = isPartOfValidSet ? 2 : 0
+        cell.contentView.layer.borderColor = UIColor.red.cgColor
         
         return cell
     }
@@ -67,8 +77,14 @@ class GamePlayViewModel {
     func dealCard() {
         if let card = deck.removeRandomElement() {
             visibleCards.append(card)
+            isHelping = false
             delegate?.reloadView()
         }
+    }
+    
+    func help() {
+        isHelping = true
+        delegate?.reloadView()
     }
     
     //MARK: - Private Methods
@@ -81,8 +97,9 @@ class GamePlayViewModel {
             }
         }
         
-        if Validator.checkSet(selectedSet) {
+        if Validator.isSetValid(selectedSet) {
             replaceSelectedCards()
+            isHelping = false
         }
         selectedIndexes.removeAll()
         delegate?.reloadView()
@@ -102,6 +119,15 @@ class GamePlayViewModel {
                     visibleCards[i] = deck.removeRandomElement()
                 }
             }
+        }
+    }
+    
+    private func screenVisibleCards() {
+        let sets = SetFinder.findValidIndexes(in: visibleCards)
+        
+        validSetIndexes = Set(sets.map{IndexPath(row: $0, section: 0)})
+        if validSetIndexes.count > 0 {
+            delegate?.reloadView()
         }
     }
 }

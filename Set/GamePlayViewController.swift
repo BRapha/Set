@@ -39,6 +39,10 @@ class GamePlayViewController: UIViewController {
     @IBAction func dealCard(_ sender: UIButton) {
         viewModel.dealCard()
     }
+    
+    @IBAction func help(_ sender: UIButton) {
+        viewModel.help()
+    }
 }
 
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {

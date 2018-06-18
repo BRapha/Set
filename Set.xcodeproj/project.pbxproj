@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE3E416820D5A0A800A26396 /* SetFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E416720D5A0A800A26396 /* SetFinder.swift */; };
 		AE51C5BD20D1681F0038308A /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C5BC20D1681F0038308A /* CollectionExtension.swift */; };
 		AE51C5BF20D1762F0038308A /* SetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C5BE20D1762F0038308A /* SetExtension.swift */; };
 		AE51C5C120D185140038308A /* GamePlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C5C020D185140038308A /* GamePlayViewModel.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE3E416720D5A0A800A26396 /* SetFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFinder.swift; sourceTree = "<group>"; };
 		AE51C5BC20D1681F0038308A /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		AE51C5BE20D1762F0038308A /* SetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExtension.swift; sourceTree = "<group>"; };
 		AE51C5C020D185140038308A /* GamePlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewModel.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				AE7D2FAD20CAF2700020933D /* FullDeck.swift */,
 				AE78AF8920D3D1B40019B0F7 /* Validator.swift */,
+				AE3E416720D5A0A800A26396 /* SetFinder.swift */,
 				AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */,
 			);
 			path = Models;
@@ -250,6 +253,7 @@
 			files = (
 				AE7D2FAE20CAF2700020933D /* FullDeck.swift in Sources */,
 				AE51C5BD20D1681F0038308A /* CollectionExtension.swift in Sources */,
+				AE3E416820D5A0A800A26396 /* SetFinder.swift in Sources */,
 				AE7D2FB920CEE99D0020933D /* UIColorExtension.swift in Sources */,
 				AE7D2F9020CA8BC30020933D /* GamePlayViewController.swift in Sources */,
 				AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */,

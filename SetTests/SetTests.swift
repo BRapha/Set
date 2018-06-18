@@ -27,7 +27,7 @@ class SetTests: XCTestCase {
             PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled),
             PlayingCard(color: .purple, shape: .tilde, value: .three, filling: .full)
             ])
-        let valid = Validator.checkSet(testSet)
+        let valid = Validator.isSetValid(testSet)
         XCTAssert(valid == true, "Failed validating set with all different features.")
     }
     
@@ -37,7 +37,7 @@ class SetTests: XCTestCase {
             PlayingCard(color: .green, shape: .oval, value: .two, filling: .speckled),
             PlayingCard(color: .green, shape: .tilde, value: .three, filling: .speckled)
             ])
-        let valid = Validator.checkSet(testSet)
+        let valid = Validator.isSetValid(testSet)
         XCTAssert(valid == true, "Failed validating set with all mixed features.")
     }
     
@@ -47,7 +47,7 @@ class SetTests: XCTestCase {
             PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled),
             PlayingCard(color: .purple, shape: .oval, value: .three, filling: .speckled)
             ])
-        let valid = Validator.checkSet(testSet)
+        let valid = Validator.isSetValid(testSet)
         XCTAssert(valid == false, "Failed validating set with all mixed features.")
     }
     
@@ -56,7 +56,7 @@ class SetTests: XCTestCase {
             PlayingCard(color: .green, shape: .oval, value: .one, filling: .empty),
             PlayingCard(color: .orange, shape: .oval, value: .two, filling: .speckled)
             ])
-        let valid = Validator.checkSet(testSet)
+        let valid = Validator.isSetValid(testSet)
         XCTAssert(valid == false, "Failed validating set with too few cards.")
     }
     
