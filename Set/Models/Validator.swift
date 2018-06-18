@@ -16,19 +16,19 @@ struct Validator {
     static func isSetValid(_ set: Set<PlayingCard>) -> Bool {
         guard set.count == 3 else { return false }
         
-        let colors = set.map { $0.color }
+        let colors = set.map{ $0.color }
         let colorValidity = testIfAllEqual(colors) || testIfAllDifferent(colors)
         guard colorValidity else { return false }
         
-        let values = set.map { $0.value }
+        let values = set.map{ $0.value }
         let valueValidity = testIfAllEqual(values) || testIfAllDifferent(values)
         guard valueValidity else { return false }
         
-        let shapes = set.map { $0.shape }
+        let shapes = set.map{ $0.shape }
         let shapeValidity = testIfAllEqual(shapes) || testIfAllDifferent(shapes)
         guard shapeValidity else { return false }
         
-        let fillings = set.map { $0.filling }
+        let fillings = set.map{ $0.filling }
         return testIfAllEqual(fillings) || testIfAllDifferent(fillings)
     }
     

@@ -90,14 +90,8 @@ class GamePlayViewModel {
     //MARK: - Private Methods
     
     private func testCurrentSelection() {
-        var selectedSet = Set<PlayingCard>()
-        for indexPath in selectedIndexes {
-            if let card = visibleCards[indexPath.row] {
-                selectedSet.insert(card)
-            }
-        }
-        
-        if Validator.isSetValid(selectedSet) {
+        let selectedCards = selectedIndexes.map{ visibleCards[$0.row] }.compactMap{ $0 }
+        if Validator.isSetValid(Set(selectedCards)) {
             replaceSelectedCards()
             isHelping = false
         }
