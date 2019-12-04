@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rk2-dz-2R2">
-                                <rect key="frame" x="0.0" y="10" width="375" height="588"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W4P-F2-zCh">
                                     <size key="itemSize" width="50" height="50"/>
@@ -42,37 +42,85 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="WfW-H8-Usw"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdo-PU-3K3">
-                                <rect key="frame" x="129" y="617" width="117" height="30"/>
-                                <state key="normal" title="One More Please"/>
-                                <connections>
-                                    <action selector="dealCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s43-Ia-hbf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-fc-2mB">
-                                <rect key="frame" x="309" y="617" width="54" height="30"/>
-                                <state key="normal" title="HELP !?"/>
-                                <connections>
-                                    <action selector="help:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xKH-Ae-zQW"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="j7c-YN-8MK">
+                                <rect key="frame" x="0.0" y="28" width="375" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlf-yX-xe7">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Player 4"/>
+                                        <connections>
+                                            <action selector="playerButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9pA-kj-4D5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lth-6X-2qk">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Check Set"/>
+                                        <connections>
+                                            <action selector="checkSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04k-s1-SR3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SY4-Vt-PBk">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Player 2"/>
+                                        <connections>
+                                            <action selector="playerButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fs5-sf-SEc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7Sp-Ne-KjY"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RaH-Bj-xCw">
+                                <rect key="frame" x="0.0" y="629" width="375" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17h-MJ-5HP">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Player 1"/>
+                                        <connections>
+                                            <action selector="playerButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q8e-wl-BOS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWs-ng-Zn1">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Settings"/>
+                                        <connections>
+                                            <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jUF-I3-kDi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56F-oi-mzq">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Player 3"/>
+                                        <connections>
+                                            <action selector="playerButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lyR-Zb-FQp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Mdo-PU-3K3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7HN-OP-RSi"/>
+                            <constraint firstItem="RaH-Bj-xCw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Ch-DN-FY9"/>
                             <constraint firstItem="rk2-dz-2R2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Axm-pr-PNP"/>
-                            <constraint firstItem="Ri0-fc-2mB" firstAttribute="centerY" secondItem="Mdo-PU-3K3" secondAttribute="centerY" id="Fbn-oF-WQM"/>
+                            <constraint firstItem="j7c-YN-8MK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DZq-b7-9fW"/>
                             <constraint firstItem="rk2-dz-2R2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="HfZ-A0-SAZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="rk2-dz-2R2" secondAttribute="top" constant="10" id="O2O-tn-TAU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ri0-fc-2mB" secondAttribute="trailing" constant="12" id="VGq-YU-lWt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Mdo-PU-3K3" secondAttribute="bottom" constant="20" id="bEk-iK-F2J"/>
-                            <constraint firstItem="Ri0-fc-2mB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mdo-PU-3K3" secondAttribute="trailing" constant="8" id="eR7-Ed-4NG"/>
-                            <constraint firstItem="Mdo-PU-3K3" firstAttribute="top" secondItem="rk2-dz-2R2" secondAttribute="bottom" constant="19" id="f4H-gC-MvD"/>
+                            <constraint firstItem="RaH-Bj-xCw" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-8" id="YiK-Sk-7k6"/>
+                            <constraint firstItem="RaH-Bj-xCw" firstAttribute="height" secondItem="j7c-YN-8MK" secondAttribute="height" id="btR-om-f3F"/>
+                            <constraint firstItem="rk2-dz-2R2" firstAttribute="top" secondItem="j7c-YN-8MK" secondAttribute="bottom" id="emG-Yl-vDp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RaH-Bj-xCw" secondAttribute="trailing" id="l4M-r5-zXs"/>
+                            <constraint firstItem="j7c-YN-8MK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="np9-be-2yr"/>
+                            <constraint firstItem="RaH-Bj-xCw" firstAttribute="top" secondItem="rk2-dz-2R2" secondAttribute="bottom" id="oJT-Fh-kdp"/>
+                            <constraint firstItem="j7c-YN-8MK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uRl-uN-ftn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="checkSetButton" destination="lth-6X-2qk" id="IiR-SP-UqQ"/>
                         <outlet property="collectionView" destination="rk2-dz-2R2" id="mZa-JW-fus"/>
+                        <outlet property="playerFourButton" destination="mlf-yX-xe7" id="Hub-hj-oSh"/>
+                        <outlet property="playerOneButton" destination="17h-MJ-5HP" id="dFt-gN-TWT"/>
+                        <outlet property="playerThreeButton" destination="56F-oi-mzq" id="xbp-OB-HUe"/>
+                        <outlet property="playerTwoButton" destination="SY4-Vt-PBk" id="N16-ZE-JXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -13,6 +13,11 @@ class GamePlayViewController: UIViewController {
     //MARK: - IBOutlets
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var checkSetButton: UIButton!
+    @IBOutlet weak var playerOneButton: UIButton!
+    @IBOutlet weak var playerTwoButton: UIButton!
+    @IBOutlet weak var playerThreeButton: UIButton!
+    @IBOutlet weak var playerFourButton: UIButton!
 
     //MARK: - Private Properties
     
@@ -27,6 +32,8 @@ class GamePlayViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.allowsMultipleSelection = true
         collectionView.isScrollEnabled = false
+        
+        updateButtonState(mode: GamePlayVCMode.newGame)
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,13 +42,97 @@ class GamePlayViewController: UIViewController {
     }
     
     //MAKR: - IBActions
-    
-    @IBAction func dealCard(_ sender: UIButton) {
-        viewModel.dealCard()
+
+    @IBAction func playerButtonPushed(_ sender: UIButton) {
+        viewModel.playerStartedTurn(player: sender.tag)
+        updateButtonState(mode: GamePlayVCMode.playersTurn(player: sender.tag))
     }
     
-    @IBAction func help(_ sender: UIButton) {
-        viewModel.help()
+    @IBAction func checkSet(_ sender: UIButton) {
+        viewModel.checkIfContainsValidSet { [unowned self] containsSet in
+            self.showActionResult(success: !containsSet, points: containsSet ? -1 : 2)
+            self.updateButtonState(mode: GamePlayVCMode.continueGame(disabledPlayer: nil))
+        }
+    }
+    
+    @IBAction func settings(_ sender: UIButton) {
+    }
+    
+    //MARK: - Private Methods
+
+    private func updateButtonState(mode: GamePlayVCMode) {
+        switch mode {
+        case .newGame:
+            for button in [playerOneButton, playerTwoButton, playerThreeButton, playerFourButton]
+                .enumerated() {
+                    button.element?.tag = button.offset
+                    button.element?.isHidden = button.offset >= viewModel.players.count
+                    button.element?.backgroundColor = .clear
+            }
+        case .playersTurn(let player):
+            for button in [playerOneButton, playerTwoButton, playerThreeButton, playerFourButton]
+                .enumerated() {
+                    button.element?.isEnabled = false
+                    if button.offset == player {
+                        button.element?.backgroundColor = UIColor.red.withAlphaComponent(0.25)
+                    }
+            }
+        case .continueGame(let disabledPlayer):
+            for button in [playerOneButton, playerTwoButton, playerThreeButton, playerFourButton]
+                .enumerated() {
+                    button.element?.backgroundColor = .clear
+                    button.element?.isEnabled = !(button.element?.tag == disabledPlayer)
+            }
+        case .checking:
+            break
+        }
+    }
+    
+    private func showActionResult(success: Bool, points: Int?) {
+        let checkView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+        checkView.center = view.center
+        checkView.layer.cornerRadius = 25
+        checkView.layer.masksToBounds = true
+        
+        let blurEffectView = UIVisualEffectView(frame: checkView.bounds)
+        blurEffectView.effect = UIBlurEffect(style: .prominent)
+        checkView.addSubview(blurEffectView)
+        
+        let stackView = UIStackView(frame: checkView.bounds)
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .center
+        stackView.spacing = 8
+        checkView.addSubview(stackView)
+        
+        let image: UIImage
+        if success {
+            if let points = points, abs(points) > 1 {
+                image = #imageLiteral(resourceName: "successKid")
+            } else {
+                image = #imageLiteral(resourceName: "checkMark")
+            }
+        } else {
+            image = #imageLiteral(resourceName: "cross")
+        }
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        stackView.addArrangedSubview(imageView)
+        
+        if let points = points {
+            let label = UILabel()
+            label.font = UIFont.preferredFont(forTextStyle: .title3)
+            label.text = "\(success ? "+ " : "")\(points) \(abs(points) > 1 ? "Points" : "Point")"
+            label.textAlignment = .center
+            stackView.addArrangedSubview(label)
+            label.sizeToFit()
+        }
+        
+        view.addSubview(checkView)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            checkView.removeFromSuperview()
+        }
     }
 }
 
@@ -70,7 +161,10 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectCard(at: indexPath)        
+        viewModel.didSelectCard(at: indexPath) { valid, playerToDeactivate in
+            self.showActionResult(success: valid, points: valid ? 1 : nil)
+            self.updateButtonState(mode: .continueGame(disabledPlayer: playerToDeactivate))
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

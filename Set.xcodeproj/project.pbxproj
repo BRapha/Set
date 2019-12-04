@@ -23,6 +23,7 @@
 		AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */; };
 		AE7D2FB220CEDFB10020933D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB120CEDFB10020933D /* CardView.swift */; };
 		AE7D2FB920CEE99D0020933D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */; };
+		AEE3556220DBB26500B98003 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3556120DBB26500B98003 /* StateMachine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
 		AE7D2FB120CEDFB10020933D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		AE7D2FB820CEE99D0020933D /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		AEE3556120DBB26500B98003 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				AE7D2F9120CA8BC30020933D /* Main.storyboard */,
 				AE7D2F8F20CA8BC30020933D /* GamePlayViewController.swift */,
 				AE51C5C020D185140038308A /* GamePlayViewModel.swift */,
+				AEE3556120DBB26500B98003 /* StateMachine.swift */,
 				AE78AF7920D2A6790019B0F7 /* CardCollectionViewCell.swift */,
 				AE7D2FB420CEDFBA0020933D /* Models */,
 				AE7D2FB320CEDFB50020933D /* Views */,
@@ -132,10 +135,10 @@
 		AE7D2FB420CEDFBA0020933D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */,
 				AE7D2FAD20CAF2700020933D /* FullDeck.swift */,
 				AE78AF8920D3D1B40019B0F7 /* Validator.swift */,
 				AE3E416720D5A0A800A26396 /* SetFinder.swift */,
-				AE7D2FAF20CAF53A0020933D /* PlayingCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				AE7D2FB020CAF53A0020933D /* PlayingCard.swift in Sources */,
 				AE78AF8A20D3D1B40019B0F7 /* Validator.swift in Sources */,
 				AE51C5C120D185140038308A /* GamePlayViewModel.swift in Sources */,
+				AEE3556220DBB26500B98003 /* StateMachine.swift in Sources */,
 				AE7D2F8E20CA8BC30020933D /* AppDelegate.swift in Sources */,
 				AE51C5BF20D1762F0038308A /* SetExtension.swift in Sources */,
 				AE78AF7A20D2A6790019B0F7 /* CardCollectionViewCell.swift in Sources */,

@@ -30,9 +30,12 @@ struct SetFinder {
     
     
     /// Finds valid sets of 3 cards each within all possible combinations within collection
-    static func findValidIndexes(in collection: [PlayingCard?]) -> Set<Int> {
+    static func findValidIndexes(in collection: [PlayingCard?], completion: (Set<Int>) -> Void) {
         var validSets = Set<Int>()
-        guard collection.count > 2 else { return validSets }
+        guard collection.count > 2 else {
+            completion(validSets)
+            return
+        }
         for item in collection.enumerated() where item.offset < collection.count-2 {
             for i in item.offset+1 ..< collection.endIndex-1 {
                 for j in i+1 ..< collection.endIndex {
@@ -47,6 +50,6 @@ struct SetFinder {
             }
         }
         
-        return validSets
+        completion (validSets)
     }
 }
